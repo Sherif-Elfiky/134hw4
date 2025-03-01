@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forms</title>
+    <link rel="icon" href="static/s-icon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <header>
+        <h1>
+            Contact Form
+        </h1>
+    </header>
+
+
+    <form action="https://httpbin.org/post" method="POST">
+
+        <div id="want-centered">
+
+            <label>Your Name:
+                <input type="text" name="your-name" required minlength="1" maxlength="100" pattern="[A-Za-z\s]+"
+                    placeholder="firstname lastname">
+                <output class="error"></output>
+                <output class="info"></output>
+            </label>
+
+
+            <label> Your Email:
+                <input type="email" name="your-email" required placeholder="email@example.com">
+                <output class="error"></output>
+                <output class="info"></output>
+            </label>
+
+            <label> Your Comments:
+                <textarea name="your-comments" required minlength="1" maxlength="300" pattern="[A-Za-z\s]+"
+                    placeholder="share your thoughts..."></textarea>
+                <output class="error"></output>
+                <output class="info"></output>
+            </label>
+
+            <noscript>
+                <input type="hidden" name="possible_bot" value="true">
+            </noscript>
+        </div>
+
+
+
+        <button class="direct-buttons">Send</button>
+
+
+
+
+
+
+
+    </form>
+    <br>
+
+
+
+    <footer id="footer-elements" class="blended-color">
+        <a href="index.html">
+            <button class="direct-buttons">Home</button>
+        </a>
+
+        This Page was updated by Sherif on the 25th of February
+    </footer>
+
+
+</body>
+
+</html>
