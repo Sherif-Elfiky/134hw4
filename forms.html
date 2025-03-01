@@ -25,20 +25,21 @@
 
             <label>Your Name:
                 <input type="text" name="your-name" required minlength="1" maxlength="100" pattern="[A-Za-z\s]+"
-                    placeholder="First Last">
+                    placeholder="firstname lastname">
                 <output class="error"></output>
                 <output class="info"></output>
             </label>
 
 
             <label> Your Email:
-                <input type="email" name="your-email" required placeholder="no_email@example.com">
+                <input type="email" name="your-email" required placeholder="email@example.com">
                 <output class="error"></output>
                 <output class="info"></output>
             </label>
 
             <label> Your Comments:
-                <textarea name="your-comments" required minlength="1" maxlength="300" pattern="[A-Za-z\s]+"></textarea>
+                <textarea name="your-comments" required minlength="1" maxlength="300" pattern="[A-Za-z\s]+"
+                    placeholder="share your thoughts..."></textarea>
                 <output class="error"></output>
                 <output class="info"></output>
             </label>
