@@ -100,15 +100,8 @@
             function maskInput(input, pattern) {
                 input.addEventListener("input", function () {
                     let value = input.value;
-                    let invalidChars = value.replace(pattern, '');
-                    if (invalidChars) {
-                        input.value = value.replace(new RegExp(`[${invalidChars}]`, 'g'), ''); // Remove invalid chars
-                        input.classList.add("error-input");
-                        setTimeout(() => {
-                            input.classList.remove("error-input");
-                        }, 1000);
-                        displayErrorMessage(input, `Illegal character(s): ${invalidChars}`);
-                    }
+                    let validChars = value.split('').filter(char => pattern.test(char)).join('');
+                    input.value = validChars; // Keep only valid characters
                 });
             }
 
