@@ -44,7 +44,9 @@
 
         <button class="direct-buttons">Send</button>
     </form>
-    <br>
+
+    <!-- Add an error display section -->
+    <div id="error-messages" style="color: red; margin-top: 20px;"></div>
 
     <footer id="footer-elements" class="blended-color">
         <a href="index.html">
@@ -149,22 +151,23 @@
                 validateComments();
 
                 if (form_errors.length === 0) {
-                    // Send form data with the form_errors included
-                    const formErrorsInput = document.createElement("input");
-                    formErrorsInput.type = "hidden";
-                    formErrorsInput.name = "form-errors";
-                    formErrorsInput.value = JSON.stringify(form_errors);
-                    form.appendChild(formErrorsInput);
-
-                    form.submit();
+                    form.submit();  // Submit the form if no errors
                 } else {
+                    // Display errors below the form
+                    const errorMessagesDiv = document.getElementById("error-messages");
+                    errorMessagesDiv.innerHTML = "<h3>Form submission has the following errors:</h3>";
+
+                    form_errors.forEach(error => {
+                        errorMessagesDiv.innerHTML += `<p>${error.error}</p>`;
+                    });
+
                     console.log("Form errors:", form_errors);
                 }
             });
 
             // Apply masking
-            maskInput(nameInput, /[^A-Za-z\s]/); // Allow only letters and spaces
-            maskInput(emailInput, /[^A-Za-z0-9@.\s]/); // Allow only email-friendly characters
+            maskInput(nameInput, "A-Za-z\s"); // Allow only letters and spaces
+            maskInput(emailInput, "A-Za-z0-9@.\s"); // Allow only email-friendly characters
         });
     </script>
 
