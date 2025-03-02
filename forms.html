@@ -118,7 +118,7 @@
                 const maxLength = commentsInput.maxLength;
                 const currentLength = commentsInput.value.length;
                 const remaining = maxLength - currentLength;
-                commentsInfoOutput.textContent = ${ remaining } characters remaining;
+                commentsInfoOutput.textContent = `${remaining} characters remaining`;
 
                 if (remaining <= 50) {
                     commentsInfoOutput.style.color = "orange";
