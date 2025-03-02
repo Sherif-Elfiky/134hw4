@@ -72,7 +72,130 @@
         This Page was updated by Sherif on the 25th of February
     </footer>
 
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contact-form");
+            const nameInput = document.getElementById("your-name");
+            const emailInput = document.getElementById("your-email");
+            const commentsInput = document.getElementById("your-comments");
+            const formErrorsInput = document.getElementById("form-errors");
+            const nameErrorOutput = nameInput.nextElementSibling;
+            const emailErrorOutput = emailInput.nextElementSibling;
+            const commentsErrorOutput = commentsInput.nextElementSibling;
+            const nameInfoOutput = nameErrorOutput.nextElementSibling;
+            const emailInfoOutput = emailErrorOutput.nextElementSibling;
+            const commentsInfoOutput = commentsErrorOutput.nextElementSibling;
+
+            let form_errors = [];
+
+            // Custom validation
+            function validateName() {
+                if (!nameInput.checkValidity()) {
+                    nameErrorOutput.textContent = "Invalid name format. Only letters and spaces allowed.";
+                    form_errors.push({ field: "your-name", error: "Invalid name format." });
+                } else {
+                    nameErrorOutput.textContent = "";
+                }
+            }
+
+            function validateEmail() {
+                if (!emailInput.checkValidity()) {
+                    emailErrorOutput.textContent = "Please enter a valid email address.";
+                    form_errors.push({ field: "your-email", error: "Invalid email format." });
+                } else {
+                    emailErrorOutput.textContent = "";
+                }
+            }
+
+            function validateComments() {
+                if (!commentsInput.checkValidity()) {
+                    commentsErrorOutput.textContent = "Invalid characters in comments.";
+                    form_errors.push({ field: "your-comments", error: "Invalid characters in comments." });
+                } else {
+                    commentsErrorOutput.textContent = "";
+                }
+            }
+
+            // Masking function
+            function maskInput(input, pattern) {
+                input.addEventListener("input", function () {
+                    let value = input.value;
+                    let invalidChars = value.replace(pattern, '');
+                    if (invalidChars) {
+                        input.value = value.replace(new RegExp(`[${invalidChars}]`, 'g'), ''); // Remove invalid chars
+                        input.classList.add("error-input");
+                        setTimeout(() => {
+                            input.classList.remove("error-input");
+                        }, 1000);
+                        displayErrorMessage(input, `Illegal character(s): ${invalidChars}`);
+                    }
+                });
+            }
+
+            function displayErrorMessage(input, message) {
+                const errorOutput = input.nextElementSibling;
+                errorOutput.textContent = message;
+                setTimeout(() => {
+                    errorOutput.textContent = "";
+                }, 3000);
+            }
+
+            // Character count for comments
+            function updateCommentsInfo() {
+                const maxLength = commentsInput.maxLength;
+                const currentLength = commentsInput.value.length;
+                const remaining = maxLength - currentLength;
+                commentsInfoOutput.textContent = `${remaining} characters remaining`;
+
+                if (remaining <= 50) {
+                    commentsInfoOutput.style.color = "orange";
+                }
+                if (remaining <= 10) {
+                    commentsInfoOutput.style.color = "red";
+                }
+                if (remaining <= 0) {
+                    commentsInfoOutput.style.color = "red";
+                    commentsInput.setCustomValidity("Exceeded character limit.");
+                } else {
+                    commentsInput.setCustomValidity("");
+                }
+            }
+
+            // Capture form errors
+            function captureFormErrors() {
+                const errors = form_errors.length > 0 ? JSON.stringify(form_errors) : "";
+                formErrorsInput.value = errors;
+            }
+
+            // Add event listeners
+            nameInput.addEventListener("input", validateName);
+            emailInput.addEventListener("input", validateEmail);
+            commentsInput.addEventListener("input", validateComments);
+            commentsInput.addEventListener("input", updateCommentsInfo);
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                // Validate all fields before submission
+                validateName();
+                validateEmail();
+                validateComments();
+                captureFormErrors();
+
+                if (form_errors.length === 0) {
+                    form.submit();
+                } else {
+                    console.log("Form errors:", form_errors);
+                }
+            });
+
+            // Apply masking
+            maskInput(nameInput, /[^A-Za-z\s]/); // Allow only letters and spaces
+            maskInput(emailInput, /[^A-Za-z0-9@.\s]/); // Allow only email-friendly characters
+        });
+    </script>
+
+
 </body>
 
 </html>
