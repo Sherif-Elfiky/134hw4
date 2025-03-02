@@ -7,22 +7,16 @@
     <title>forms</title>
     <link rel="icon" href="static/s-icon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body>
 
     <header>
-        <h1>
-            Contact Form
-        </h1>
+        <h1>Contact Form</h1>
     </header>
 
-
     <form action="https://httpbin.org/post" method="POST">
-
         <div id="want-centered">
-
             <label>Your Name:
                 <input type="text" name="your-name" required minlength="1" maxlength="100" pattern="[A-Za-z\s]+"
                     placeholder="firstname lastname">
@@ -30,14 +24,13 @@
                 <output class="info"></output>
             </label>
 
-
-            <label> Your Email:
+            <label>Your Email:
                 <input type="email" name="your-email" required placeholder="email@example.com">
                 <output class="error"></output>
                 <output class="info"></output>
             </label>
 
-            <label> Your Comments:
+            <label>Your Comments:
                 <textarea name="your-comments" required minlength="1" maxlength="300" pattern="[A-Za-z\s]+"
                     placeholder="share your thoughts..."></textarea>
                 <output class="error"></output>
@@ -49,36 +42,23 @@
             </noscript>
         </div>
 
-
-
         <button class="direct-buttons">Send</button>
-
-
-
-
-
-
-
     </form>
     <br>
-
-
 
     <footer id="footer-elements" class="blended-color">
         <a href="index.html">
             <button class="direct-buttons">Home</button>
         </a>
-
         This Page was updated by Sherif on the 25th of February
     </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const form = document.getElementById("contact-form");
-            const nameInput = document.getElementById("your-name");
-            const emailInput = document.getElementById("your-email");
-            const commentsInput = document.getElementById("your-comments");
-            const formErrorsInput = document.getElementById("form-errors");
+            const form = document.querySelector("form");
+            const nameInput = document.getElementsByName("your-name")[0];
+            const emailInput = document.getElementsByName("your-email")[0];
+            const commentsInput = document.getElementsByName("your-comments")[0];
             const nameErrorOutput = nameInput.nextElementSibling;
             const emailErrorOutput = emailInput.nextElementSibling;
             const commentsErrorOutput = commentsInput.nextElementSibling;
@@ -161,12 +141,6 @@
                 }
             }
 
-            // Capture form errors
-            function captureFormErrors() {
-                const errors = form_errors.length > 0 ? JSON.stringify(form_errors) : "";
-                formErrorsInput.value = errors;
-            }
-
             // Add event listeners
             nameInput.addEventListener("input", validateName);
             emailInput.addEventListener("input", validateEmail);
@@ -180,7 +154,6 @@
                 validateName();
                 validateEmail();
                 validateComments();
-                captureFormErrors();
 
                 if (form_errors.length === 0) {
                     form.submit();
@@ -194,7 +167,6 @@
             maskInput(emailInput, /[^A-Za-z0-9@.\s]/); // Allow only email-friendly characters
         });
     </script>
-
 
 </body>
 
