@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap');
 
+
+
 :root {
     --primary-color: #D8BFD8;
     --secondary-color: #330066; 
@@ -13,11 +15,11 @@
     --text-color: #FFFFFF; /* White text */
 }
 
+
+
 .blended-color {
     color: color-mix(in srgb, var(--primary-color, #E6E6FA) 50%, var(--secondary-color, #2E0854) 50%);
 }
-
-
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -208,15 +210,6 @@ textarea:valid, input:valid {
     border: 4px solid green;
 
 }
-
-
-
-
-
-
-
-
-
 
 
 
