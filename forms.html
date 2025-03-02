@@ -100,8 +100,8 @@
             function maskInput(input, pattern) {
                 input.addEventListener("input", function () {
                     let value = input.value;
-                    let validChars = value.split('').filter(char => pattern.test(char)).join('');
-                    input.value = validChars; // Keep only valid characters
+                    // Replace invalid characters with an empty string
+                    input.value = value.replace(new RegExp(`[^${pattern}]`, 'g'), '');
                 });
             }
 
