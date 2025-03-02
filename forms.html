@@ -35,7 +35,6 @@
                     placeholder="share your thoughts..."></textarea>
                 <output class="error"></output>
                 <output class="info"></output>
-               
             </label>
 
             <noscript>
@@ -98,7 +97,6 @@
             }
 
             // Masking function
-            let validChars = value.replace(/[^A-Za-z\s]/g, ''); // Allow only letters and spaces
             function maskInput(input, pattern) {
                 input.addEventListener("input", function () {
                     let value = input.value;
@@ -158,6 +156,13 @@
                 validateComments();
 
                 if (form_errors.length === 0) {
+                    // Send form data with the form_errors included
+                    const formErrorsInput = document.createElement("input");
+                    formErrorsInput.type = "hidden";
+                    formErrorsInput.name = "form-errors";
+                    formErrorsInput.value = JSON.stringify(form_errors);
+                    form.appendChild(formErrorsInput);
+
                     form.submit();
                 } else {
                     console.log("Form errors:", form_errors);
