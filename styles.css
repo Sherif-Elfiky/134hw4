@@ -200,6 +200,33 @@ textarea:valid, input:valid {
 
 }
 
+.error {
+    color: red;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.error.visible {
+    opacity: 1;
+}
+
+.warning {
+    color: orange;
+}
+
+.error-highlight {
+    border: 2px solid red;
+    animation: shake 0.2s ease-in-out 2;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
 
 
 
