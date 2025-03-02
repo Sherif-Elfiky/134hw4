@@ -45,9 +45,6 @@
         <button class="direct-buttons">Send</button>
     </form>
 
-    <!-- Add an error display section -->
-    <div id="error-messages" style="color: red; margin-top: 20px;"></div>
-
     <footer id="footer-elements" class="blended-color">
         <a href="index.html">
             <button class="direct-buttons">Home</button>
@@ -68,13 +65,10 @@
             const emailInfoOutput = emailErrorOutput.nextElementSibling;
             const commentsInfoOutput = commentsErrorOutput.nextElementSibling;
 
-            let form_errors = [];
-
             // Custom validation
             function validateName() {
                 if (!nameInput.checkValidity()) {
                     nameErrorOutput.textContent = "Invalid name format. Only letters and spaces allowed.";
-                    form_errors.push({ field: "your-name", error: "Invalid name format." });
                 } else {
                     nameErrorOutput.textContent = "";
                 }
@@ -83,7 +77,6 @@
             function validateEmail() {
                 if (!emailInput.checkValidity()) {
                     emailErrorOutput.textContent = "Please enter a valid email address.";
-                    form_errors.push({ field: "your-email", error: "Invalid email format." });
                 } else {
                     emailErrorOutput.textContent = "";
                 }
@@ -92,7 +85,6 @@
             function validateComments() {
                 if (!commentsInput.checkValidity()) {
                     commentsErrorOutput.textContent = "Invalid characters in comments.";
-                    form_errors.push({ field: "your-comments", error: "Invalid characters in comments." });
                 } else {
                     commentsErrorOutput.textContent = "";
                 }
@@ -105,14 +97,6 @@
                     // Replace invalid characters with an empty string
                     input.value = value.replace(new RegExp(`[^${pattern}]`, 'g'), '');
                 });
-            }
-
-            function displayErrorMessage(input, message) {
-                const errorOutput = input.nextElementSibling;
-                errorOutput.textContent = message;
-                setTimeout(() => {
-                    errorOutput.textContent = "";
-                }, 3000);
             }
 
             // Character count for comments
@@ -150,18 +134,8 @@
                 validateEmail();
                 validateComments();
 
-                if (form_errors.length === 0) {
+                if (form.checkValidity()) {
                     form.submit();  // Submit the form if no errors
-                } else {
-                    // Display errors below the form
-                    const errorMessagesDiv = document.getElementById("error-messages");
-                    errorMessagesDiv.innerHTML = "<h3>Form submission has the following errors:</h3>";
-
-                    form_errors.forEach(error => {
-                        errorMessagesDiv.innerHTML += `<p>${error.error}</p>`;
-                    });
-
-                    console.log("Form errors:", form_errors);
                 }
             });
 
