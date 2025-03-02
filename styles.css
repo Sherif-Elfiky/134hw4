@@ -220,6 +220,10 @@ textarea:valid, input:valid {
     animation: shake 0.2s ease-in-out 2;
 }
 
+.error {
+    color: red !important;
+}
+
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }

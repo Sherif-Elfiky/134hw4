@@ -56,9 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Custom validation on submit
+    
     form.addEventListener("submit", function (event) {
-        formErrors.length = 0; // Clear previous errors
+        formErrors.length = 0;
 
         if (!nameInput.checkValidity()) {
             showError(nameInput, "Name is required (1-100 characters, letters only).");
@@ -76,9 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (formErrors.length > 0) {
-            event.preventDefault(); // Stop form submission if errors exist
+            event.preventDefault(); 
 
-            // Attach errors to hidden input
+           
             const errorField = document.createElement("input");
             errorField.type = "hidden";
             errorField.name = "form-errors";
