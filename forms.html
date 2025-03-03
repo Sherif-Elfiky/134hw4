@@ -41,8 +41,8 @@
             </noscript>
         </div>
 
-        <!-- Hidden field to capture errors -->
-        <input type="hidden" name="form-errors" id="form-errors">
+        <!-- Hidden field to capture errors with new id -->
+        <input type="hidden" name="form-errors" id="hidden-form-errors">
 
         <button class="direct-buttons">Send</button>
     </form>
@@ -148,12 +148,14 @@
 
                 // Check if there are any errors
                 if (form_errors.length === 0) {
+                    // If no errors, submit the form
                     form.submit();
                 } else {
-                    // Capture errors in the hidden form-errors field
-                    const formErrorsInput = document.getElementById("form-errors");
+                    // If there are errors, populate the hidden field with the errors and send them
+                    const formErrorsInput = document.getElementById("hidden-form-errors");
                     formErrorsInput.value = JSON.stringify(form_errors);
                     console.log("Form errors:", form_errors);
+                    // Optionally, show the errors in the UI or handle them as needed
                 }
             });
 
