@@ -5,7 +5,7 @@ themeToggle.id = "theme-toggle";
 document.body.appendChild(themeToggle);
 
 function updateThemeIcon() {
-    themeToggle.textContent = document.body.getAttribute("data-theme") === "dark" ? "🌙" : "☀️";
+    themeToggle.textContent = document.body.getAttribute("data-theme") === "dark" ? "☀️" : "🌙";
 }
 
 // Load saved theme preference
