@@ -136,21 +136,21 @@
             commentsInput.addEventListener("input", updateCommentsInfo);
 
             form.addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent the default form submission
+                event.preventDefault(); 
 
-                // Clear previous errors
+               
                 form_errors = [];
 
-                // Validate fields
+                
                 validateName();
                 validateEmail();
                 validateComments();
 
-                // Check if there are any errors after validation
+               
                 if (form_errors.length === 0) {
-                    form.submit();  // Submit the form manually if there are no errors
+                    form.submit();  
                 } else {
-                    // Otherwise, just log the errors or handle them as needed
+                  
                     console.log("Form errors:", form_errors);
                 }
             });

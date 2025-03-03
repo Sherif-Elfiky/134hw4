@@ -1,4 +1,4 @@
-document.documentElement.classList.add('js-enabled'); // Indicate JS is enabled
+document.documentElement.classList.add('js-enabled'); 
 
 const themeToggle = document.createElement("button");
 themeToggle.id = "theme-toggle";
@@ -8,14 +8,14 @@ function updateThemeIcon() {
     themeToggle.textContent = document.body.getAttribute("data-theme") === "dark" ? "☀️" : "🌙";
 }
 
-// Load saved theme preference
+
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme) {
     document.body.setAttribute("data-theme", savedTheme);
 }
 updateThemeIcon();
 
-// Toggle theme on button click
+
 themeToggle.addEventListener("click", () => {
     const currentTheme = document.body.getAttribute("data-theme");
     const newTheme = currentTheme === "dark" ? "light" : "dark";
