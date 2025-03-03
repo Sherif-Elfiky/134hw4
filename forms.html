@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <header>
         <h1>Contact Form</h1>
     </header>
@@ -41,6 +40,9 @@
                 <input type="hidden" name="possible_bot" value="true">
             </noscript>
         </div>
+
+        <!-- Hidden field to capture errors -->
+        <input type="hidden" name="form-errors" id="form-errors">
 
         <button class="direct-buttons">Send</button>
     </form>
@@ -138,19 +140,19 @@
             form.addEventListener("submit", function (event) {
                 event.preventDefault();
 
-
                 form_errors = [];
-
 
                 validateName();
                 validateEmail();
                 validateComments();
 
-
+                // Check if there are any errors
                 if (form_errors.length === 0) {
                     form.submit();
                 } else {
-
+                    // Capture errors in the hidden form-errors field
+                    const formErrorsInput = document.getElementById("form-errors");
+                    formErrorsInput.value = JSON.stringify(form_errors);
                     console.log("Form errors:", form_errors);
                 }
             });
