@@ -136,21 +136,21 @@
             commentsInput.addEventListener("input", updateCommentsInfo);
 
             form.addEventListener("submit", function (event) {
-                event.preventDefault(); 
+                event.preventDefault();
 
-                
+
                 form_errors = [];
 
-             
+
                 validateName();
                 validateEmail();
                 validateComments();
 
-                
+
                 if (form_errors.length === 0) {
-                    form.submit(); 
+                    form.submit();
                 } else {
-                  
+
                     console.log("Form errors:", form_errors);
                 }
             });
@@ -159,6 +159,8 @@
             maskInput(emailInput, /[^A-Za-z0-9@.\s]/);
         });
     </script>
+
+    <script src="themes.js"></script>
 
 </body>
 
