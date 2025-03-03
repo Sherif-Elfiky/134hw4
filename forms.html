@@ -155,6 +155,11 @@
                 // Check if there are any errors
                 if (form_errors.length === 0) {
                     // If no errors, submit the form
+                    const formErrorsInput = document.getElementById("hidden-form-errors");
+                    formErrorsInput.value = JSON.stringify(form_errors);
+
+                    // Log the form errors for debugging
+                    console.log("Form errors:", form_errors);
                     form.submit();
                 } else {
                     // If there are errors, populate the hidden field with the errors and send them
