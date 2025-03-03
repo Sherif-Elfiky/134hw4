@@ -1,20 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap');
 
-
-
 :root {
     --primary-color: #D8BFD8;
     --secondary-color: #330066; 
+    --bg-color: #D8BFD8;
+    --text-color:  #330066; 
 
 }
 
 [data-theme="dark"] {
-    --primary-color: #2E0854; /* Dark purple */
-    --secondary-color: #E6E6FA; /* Light purple */
-    --background-color: #2E0854; /* Dark purple background */
-    --text-color: #FFFFFF; /* White text */
+    --bg-color: #2E0854; 
+    --text-color: #E6E6FA; 
 }
-
 
 
 .blended-color {
@@ -32,8 +29,8 @@ h1 {
 }
 
 body {
-    background-color: var(--primary-color, #E6E6FA);
-    color: var(--secondary-color, #2E0854);
+    background-color: var(--bg-color, #E6E6FA);
+    color: var(--text-color, #2E0854);
     text-align: center;
     font-family: 'Fira Mono', monospace;
 }
@@ -212,11 +209,18 @@ textarea:valid, input:valid {
 }
 
 
+#theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* Hidden when JS is off */
+}
 
-
-
-
-
-
-
-
+/* Show button when JavaScript is enabled */
+.js-enabled #theme-toggle {
+    display: block;
+}
