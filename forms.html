@@ -48,6 +48,8 @@
     </form>
     <br>
 
+    <div id="error-messages"></div> <!-- Section to show all errors -->
+
     <footer id="footer-elements" class="blended-color">
         <a href="index.html">
             <button class="direct-buttons">Home</button>
@@ -104,12 +106,14 @@
                 });
             }
 
-            function displayErrorMessage(input, message) {
-                const errorOutput = input.nextElementSibling;
-                errorOutput.textContent = message;
-                setTimeout(() => {
-                    errorOutput.textContent = "";
-                }, 3000);
+            function displayErrorMessages() {
+                const errorMessagesDiv = document.getElementById("error-messages");
+                errorMessagesDiv.innerHTML = ""; // Clear previous error messages
+                form_errors.forEach(error => {
+                    const errorElement = document.createElement("div");
+                    errorElement.textContent = `Error in ${error.field}: ${error.error}`;
+                    errorMessagesDiv.appendChild(errorElement);
+                });
             }
 
             function updateCommentsInfo() {
@@ -145,6 +149,8 @@
                 validateName();
                 validateEmail();
                 validateComments();
+
+                displayErrorMessages(); // Display errors on the page
 
                 // Check if there are any errors
                 if (form_errors.length === 0) {
